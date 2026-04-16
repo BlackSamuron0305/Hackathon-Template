@@ -12,34 +12,34 @@ import { createClient } from "@/backend/database/supabase/server";
 // ── Profiles ──────────────────────────────────────────────
 
 export async function getProfile(userId: string) {
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("profiles")
-    .select("*")
-    .eq("id", userId)
-    .single();
+    const supabase = await createClient();
+    const { data, error } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", userId)
+        .single();
 
-  return { data, error };
+    return { data, error };
 }
 
 export async function getAllProfiles() {
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("profiles")
-    .select("*")
-    .order("created_at", { ascending: false });
+    const supabase = await createClient();
+    const { data, error } = await supabase
+        .from("profiles")
+        .select("*")
+        .order("created_at", { ascending: false });
 
-  return { data, error };
+    return { data, error };
 }
 
 export async function updateProfileRole(userId: string, role: string) {
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("profiles")
-    .update({ role })
-    .eq("id", userId)
-    .select()
-    .single();
+    const supabase = await createClient();
+    const { data, error } = await supabase
+        .from("profiles")
+        .update({ role })
+        .eq("id", userId)
+        .select()
+        .single();
 
-  return { data, error };
+    return { data, error };
 }

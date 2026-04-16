@@ -5,44 +5,44 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/backend/database/supabase/server";
 
 export async function login(formData: FormData) {
-  const supabase = await createClient();
+    const supabase = await createClient();
 
-  const data = {
-    email: formData.get("email") as string,
-    password: formData.get("password") as string,
-  };
+    const data = {
+        email: formData.get("email") as string,
+        password: formData.get("password") as string,
+    };
 
-  const { error } = await supabase.auth.signInWithPassword(data);
+    const { error } = await supabase.auth.signInWithPassword(data);
 
-  if (error) {
-    redirect("/login?error=" + encodeURIComponent(error.message));
-  }
+    if (error) {
+        redirect("/login?error=" + encodeURIComponent(error.message));
+    }
 
-  revalidatePath("/", "layout");
-  redirect("/dashboard");
+    revalidatePath("/", "layout");
+    redirect("/dashboard");
 }
 
 export async function signup(formData: FormData) {
-  const supabase = await createClient();
+    const supabase = await createClient();
 
-  const data = {
-    email: formData.get("email") as string,
-    password: formData.get("password") as string,
-  };
+    const data = {
+        email: formData.get("email") as string,
+        password: formData.get("password") as string,
+    };
 
-  const { error } = await supabase.auth.signUp(data);
+    const { error } = await supabase.auth.signUp(data);
 
-  if (error) {
-    redirect("/signup?error=" + encodeURIComponent(error.message));
-  }
+    if (error) {
+        redirect("/signup?error=" + encodeURIComponent(error.message));
+    }
 
-  revalidatePath("/", "layout");
-  redirect("/signup?message=" + encodeURIComponent("Check your email to confirm your account."));
+    revalidatePath("/", "layout");
+    redirect("/signup?message=" + encodeURIComponent("Check your email to confirm your account."));
 }
 
 export async function signout() {
-  const supabase = await createClient();
-  await supabase.auth.signOut();
-  revalidatePath("/", "layout");
-  redirect("/");
+    const supabase = await createClient();
+    await supabase.auth.signOut();
+    revalidatePath("/", "layout");
+    redirect("/");
 }

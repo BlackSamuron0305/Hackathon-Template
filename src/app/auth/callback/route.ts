@@ -5,17 +5,17 @@ import { NextResponse } from "next/server";
 // It's a thin server-side handler; real auth logic lives in backend/database/.
 
 export async function GET(request: Request) {
-  const { searchParams, origin } = new URL(request.url);
-  const code = searchParams.get("code");
-  const next = searchParams.get("next") ?? "/dashboard";
+    const { searchParams, origin } = new URL(request.url);
+    const code = searchParams.get("code");
+    const next = searchParams.get("next") ?? "/dashboard";
 
-  if (code) {
-    const supabase = await createClient();
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
-    if (!error) {
-      return NextResponse.redirect(`${origin}${next}`);
+    if (code) {
+        const supabase = await createClient();
+        const { error } = await supabase.auth.exchangeCodeForSession(code);
+        if (!error) {
+            return NextResponse.redirect(`${origin}${next}`);
+        }
     }
-  }
 
-  return NextResponse.redirect(`${origin}/login?error=Could+not+authenticate`);
+    return NextResponse.redirect(`${origin}/login?error=Could+not+authenticate`);
 }

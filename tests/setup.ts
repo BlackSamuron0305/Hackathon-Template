@@ -10,16 +10,16 @@
  * Helper to get the Supabase URL from environment.
  */
 export function getTestSupabaseUrl(): string {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-  if (!url) throw new Error('NEXT_PUBLIC_SUPABASE_URL not set')
-  return url
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+    if (!url) throw new Error('NEXT_PUBLIC_SUPABASE_URL not set')
+    return url
 }
 
 /**
  * Helper to get the Supabase anon key from environment.
  */
 export function getTestSupabaseAnonKey(): string {
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  if (!key) throw new Error('NEXT_PUBLIC_SUPABASE_ANON_KEY not set')
-  return key
+    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    if (!key) throw new Error('NEXT_PUBLIC_SUPABASE_ANON_KEY not set')
+    return key
 }
