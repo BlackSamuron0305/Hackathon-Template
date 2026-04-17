@@ -17,6 +17,8 @@ except ImportError:
 
 @dataclass
 class RAGConfig:
+    """Runtime config for local RAG with Ollama (defaults to deepseek-r1:8b)."""
+
     ollama_base_url: str = "http://localhost:11434"
     llm_model: str = "deepseek-r1:8b"
     embedding_model: str = "nomic-embed-text"

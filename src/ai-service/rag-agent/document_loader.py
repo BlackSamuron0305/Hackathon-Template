@@ -78,7 +78,10 @@ def load_documents(paths: Iterable[str], enable_ocr: bool = True) -> list[Docume
                 )
                 documents.extend(UnstructuredWordDocumentLoader(path.as_posix()).load())
             except RuntimeError:
-                LOGGER.exception("Unexpected runtime error while loading DOCX: %s", path)
+                LOGGER.exception(
+                    "Docx2txtLoader raised RuntimeError for %s; re-raising for investigation.",
+                    path,
+                )
                 raise
             continue
 
