@@ -1,39 +1,35 @@
+const adminStats = [
+  { label: "Total users", value: "1,245" },
+  { label: "Active teams", value: "84" },
+  { label: "API requests", value: "2.4M" },
+  { label: "Critical alerts", value: "0" },
+];
+
 export default function AdminOverviewPage() {
-    return (
-        <div className="px-8 py-10">
-            <div className="mb-8">
-                <h1 className="text-2xl font-bold">Admin Overview</h1>
-                <p className="mt-1 text-foreground/60">
-                    Manage users and application settings.
-                </p>
-            </div>
+  return (
+    <div className="space-y-6">
+      <section className="glass rounded-3xl p-8">
+        <h1 className="text-3xl font-semibold">Admin Overview</h1>
+        <p className="mt-2 text-foreground/75">Govern growth, quality, and security from one command center.</p>
+      </section>
 
-            {/* Admin stats */}
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                <div className="rounded-xl border border-foreground/10 p-6">
-                    <h3 className="text-sm font-medium text-foreground/60">Total Users</h3>
-                    <p className="mt-2 text-3xl font-bold">--</p>
-                </div>
-                <div className="rounded-xl border border-foreground/10 p-6">
-                    <h3 className="text-sm font-medium text-foreground/60">Active Today</h3>
-                    <p className="mt-2 text-3xl font-bold">--</p>
-                </div>
-                <div className="rounded-xl border border-foreground/10 p-6">
-                    <h3 className="text-sm font-medium text-foreground/60">Metric 3</h3>
-                    <p className="mt-2 text-3xl font-bold">--</p>
-                </div>
-                <div className="rounded-xl border border-foreground/10 p-6">
-                    <h3 className="text-sm font-medium text-foreground/60">Metric 4</h3>
-                    <p className="mt-2 text-3xl font-bold">--</p>
-                </div>
-            </div>
+      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        {adminStats.map((metric) => (
+          <article key={metric.label} className="glass rounded-2xl p-5">
+            <p className="text-sm text-foreground/70">{metric.label}</p>
+            <p className="mt-2 text-3xl font-semibold">{metric.value}</p>
+          </article>
+        ))}
+      </section>
 
-            {/* Quick actions */}
-            <div className="mt-10 rounded-xl border border-dashed border-foreground/20 p-12 text-center">
-                <p className="text-foreground/40">
-                    Admin overview content goes here.
-                </p>
-            </div>
-        </div>
-    );
+      <section className="glass rounded-2xl p-6">
+        <h2 className="text-lg font-semibold">Operational checklist</h2>
+        <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-foreground/80">
+          <li>Audit permissions and role assignments weekly.</li>
+          <li>Track deployment health and rollback readiness.</li>
+          <li>Review anomaly logs from backend and AI services.</li>
+        </ul>
+      </section>
+    </div>
+  );
 }
