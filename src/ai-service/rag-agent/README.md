@@ -25,7 +25,7 @@ As background motivation, see **DeepSeek-R1: Incentivizing Reasoning Capability 
 ## Setup
 
 ```bash
-cd /home/runner/work/Hackathon-Template/Hackathon-Template/src/ai-service/rag-agent
+cd src/ai-service/rag-agent
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 from typing import Iterable
+from zipfile import BadZipFile
 
 import numpy as np
 from langchain_community.document_loaders import (
@@ -68,7 +69,7 @@ def load_documents(paths: Iterable[str], enable_ocr: bool = True) -> list[Docume
         if suffix == ".docx":
             try:
                 documents.extend(Docx2txtLoader(path.as_posix()).load())
-            except Exception:
+            except (BadZipFile, ValueError, RuntimeError):
                 documents.extend(UnstructuredWordDocumentLoader(path.as_posix()).load())
             continue
 
