@@ -2,7 +2,10 @@ from __future__ import annotations
 
 import argparse
 
-from rag_agent import LocalRAGAgent
+try:
+    from .rag_agent import LocalRAGAgent
+except ImportError:
+    from rag_agent import LocalRAGAgent
 
 
 def build_parser() -> argparse.ArgumentParser:

@@ -8,7 +8,10 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama import ChatOllama, OllamaEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-from document_loader import load_documents
+try:
+    from .document_loader import load_documents
+except ImportError:
+    from document_loader import load_documents
 
 
 @dataclass
