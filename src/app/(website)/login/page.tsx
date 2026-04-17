@@ -1,79 +1,40 @@
+import Link from "next/link";
 import { login } from "@/backend/database/auth";
 
 export default async function LoginPage({
-    searchParams,
+  searchParams,
 }: {
-    searchParams: Promise<{ error?: string; message?: string }>;
+  searchParams: Promise<{ error?: string; message?: string }>;
 }) {
-    const params = await searchParams;
+  const params = await searchParams;
 
-    return (
-        <div className="flex min-h-screen items-center justify-center bg-background">
-            <div className="w-full max-w-md space-y-8 rounded-xl border border-foreground/10 bg-background p-8 shadow-lg">
-                <div className="text-center">
-                    <h1 className="text-3xl font-bold tracking-tight">Welcome back</h1>
-                    <p className="mt-2 text-sm text-foreground/60">
-                        Sign in to your account
-                    </p>
-                </div>
+  return (
+    <div className="flex min-h-screen items-center justify-center px-6 py-10">
+      <div className="glass w-full max-w-md rounded-3xl p-8">
+        <p className="text-sm text-cyan-200">Welcome back</p>
+        <h1 className="mt-2 text-3xl font-semibold">Sign in</h1>
 
-                {params.error && (
-                    <div className="rounded-lg bg-red-500/10 p-3 text-center text-sm text-red-500">
-                        {params.error}
-                    </div>
-                )}
+        {params.error && <p className="mt-4 rounded-xl border border-red-400/30 bg-red-400/10 px-3 py-2 text-sm text-red-200">{params.error}</p>}
+        {params.message && <p className="mt-4 rounded-xl border border-green-400/30 bg-green-400/10 px-3 py-2 text-sm text-green-200">{params.message}</p>}
 
-                {params.message && (
-                    <div className="rounded-lg bg-green-500/10 p-3 text-center text-sm text-green-500">
-                        {params.message}
-                    </div>
-                )}
+        <form className="mt-6 grid gap-4">
+          <label className="grid gap-2 text-sm">
+            Email
+            <input id="email" name="email" type="email" className="rounded-xl border bg-transparent px-4 py-3 outline-none ring-violet-400/0 transition focus:ring-2" required placeholder="you@example.com" />
+          </label>
+          <label className="grid gap-2 text-sm">
+            Password
+            <input id="password" name="password" type="password" className="rounded-xl border bg-transparent px-4 py-3 outline-none ring-violet-400/0 transition focus:ring-2" required placeholder="••••••••" />
+          </label>
+          <button formAction={login} className="mt-2 rounded-xl bg-violet-500 px-5 py-3 text-sm font-semibold text-white hover:bg-violet-400">
+            Sign in
+          </button>
+        </form>
 
-                <form className="mt-8 space-y-6">
-                    <div className="space-y-4">
-                        <div>
-                            <label htmlFor="email" className="block text-sm font-medium">
-                                Email
-                            </label>
-                            <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                required
-                                className="mt-1 w-full rounded-lg border border-foreground/20 bg-background px-4 py-2.5 text-sm outline-none focus:border-foreground/50 focus:ring-1 focus:ring-foreground/50"
-                                placeholder="you@example.com"
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="password" className="block text-sm font-medium">
-                                Password
-                            </label>
-                            <input
-                                id="password"
-                                name="password"
-                                type="password"
-                                required
-                                className="mt-1 w-full rounded-lg border border-foreground/20 bg-background px-4 py-2.5 text-sm outline-none focus:border-foreground/50 focus:ring-1 focus:ring-foreground/50"
-                                placeholder="••••••••"
-                            />
-                        </div>
-                    </div>
-
-                    <button
-                        formAction={login}
-                        className="w-full rounded-lg bg-foreground px-4 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
-                    >
-                        Sign in
-                    </button>
-                </form>
-
-                <p className="text-center text-sm text-foreground/60">
-                    Don&apos;t have an account?{" "}
-                    <a href="/signup" className="font-medium text-foreground underline underline-offset-4">
-                        Sign up
-                    </a>
-                </p>
-            </div>
-        </div>
-    );
+        <p className="mt-6 text-center text-sm text-foreground/75">
+          Need an account? <Link href="/signup" className="font-semibold text-cyan-300 hover:text-cyan-200">Create one</Link>
+        </p>
+      </div>
+    </div>
+  );
 }

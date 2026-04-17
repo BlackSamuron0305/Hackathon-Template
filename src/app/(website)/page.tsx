@@ -1,116 +1,105 @@
 import Link from "next/link";
 import { createClient } from "@/backend/database/supabase/server";
 
+const highlights = [
+  {
+    title: "Command Center UX",
+    desc: "A premium, futuristic UI baseline for website, user, and admin experiences.",
+    emoji: "🛰️",
+  },
+  {
+    title: "Role-first Routing",
+    desc: "Public, user, and admin sub-pages with distinct layout personality and clear hierarchy.",
+    emoji: "🧭",
+  },
+  {
+    title: "Deploy-ready",
+    desc: "Docker + quick Windows scripts for build, test, and deployment workflows.",
+    emoji: "🚢",
+  },
+];
+
 export default async function HomePage() {
-    const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-    return (
-        <div className="flex min-h-screen flex-col">
-            {/* Nav */}
-            <header className="border-b border-foreground/10">
-                <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-                    <Link href="/" className="text-xl font-bold">
-                        🚀 HackApp
-                    </Link>
-                    <div className="flex items-center gap-4">
-                        {user ? (
-                            <Link
-                                href="/dashboard"
-                                className="rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90"
-                            >
-                                Dashboard
-                            </Link>
-                        ) : (
-                            <>
-                                <Link
-                                    href="/login"
-                                    className="text-sm font-medium text-foreground/60 transition-colors hover:text-foreground"
-                                >
-                                    Sign in
-                                </Link>
-                                <Link
-                                    href="/signup"
-                                    className="rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90"
-                                >
-                                    Get Started
-                                </Link>
-                            </>
-                        )}
-                    </div>
-                </nav>
-            </header>
+  return (
+    <div className="min-h-screen px-6 py-8 sm:px-10 lg:px-16">
+      <header className="glass mx-auto flex max-w-6xl items-center justify-between rounded-2xl px-5 py-4">
+        <Link href="/" className="text-xl font-semibold tracking-tight">
+          ✨ Hackathon Forge
+        </Link>
+        <nav className="flex items-center gap-3 text-sm">
+          <Link href="/contact" className="rounded-lg px-3 py-2 text-foreground/75 hover:bg-white/5 hover:text-foreground">
+            Contact
+          </Link>
+          {user ? (
+            <Link href="/dashboard" className="rounded-lg bg-violet-500 px-4 py-2 font-medium text-white hover:bg-violet-400">
+              Dashboard
+            </Link>
+          ) : (
+            <>
+              <Link href="/login" className="rounded-lg px-3 py-2 text-foreground/75 hover:bg-white/5 hover:text-foreground">
+                Login
+              </Link>
+              <Link href="/signup" className="rounded-lg bg-cyan-500 px-4 py-2 font-medium text-slate-950 hover:bg-cyan-400">
+                Get Started
+              </Link>
+            </>
+          )}
+        </nav>
+      </header>
 
-            {/* Hero */}
-            <main className="flex flex-1 items-center justify-center px-6">
-                <div className="mx-auto max-w-2xl text-center">
-                    <h1 className="text-5xl font-bold tracking-tight sm:text-6xl">
-                        Build something{" "}
-                        <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-                            amazing
-                        </span>
-                    </h1>
-                    <p className="mt-6 text-lg leading-8 text-foreground/60">
-                        Your hackathon project starts here. Authentication, database, and
-                        infrastructure — all ready to go. Focus on what makes your idea
-                        unique.
-                    </p>
-                    <div className="mt-10 flex items-center justify-center gap-4">
-                        <Link
-                            href="/signup"
-                            className="rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background shadow-sm transition-opacity hover:opacity-90"
-                        >
-                            Get Started
-                        </Link>
-                        <a
-                            href="https://github.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="rounded-lg border border-foreground/20 px-6 py-3 text-sm font-semibold transition-colors hover:bg-foreground/5"
-                        >
-                            GitHub →
-                        </a>
-                    </div>
-                </div>
-            </main>
+      <main className="mx-auto mt-10 grid max-w-6xl gap-8 lg:grid-cols-[1.3fr_1fr]">
+        <section className="glass rounded-3xl p-8 sm:p-10">
+          <p className="inline-flex rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs font-medium tracking-wide text-cyan-200">
+            Initial Product Frontend
+          </p>
+          <h1 className="mt-5 text-4xl font-semibold leading-tight sm:text-5xl">
+            Design faster.
+            <br />
+            Ship smarter.
+          </h1>
+          <p className="mt-5 max-w-2xl text-base leading-7 text-foreground/75 sm:text-lg">
+            This starter now ships with a cohesive multi-page interface across website, user, and admin areas so you can focus on building differentiating features.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="/signup" className="rounded-xl bg-violet-500 px-5 py-3 text-sm font-semibold text-white hover:bg-violet-400">
+              Start Building
+            </Link>
+            <Link href="/admin" className="rounded-xl border border-white/20 px-5 py-3 text-sm font-semibold text-foreground/85 hover:bg-white/5">
+              View Admin Space
+            </Link>
+          </div>
+        </section>
 
-            {/* Features */}
-            <section className="border-t border-foreground/10 px-6 py-20">
-                <div className="mx-auto grid max-w-7xl gap-8 sm:grid-cols-3">
-                    <div className="text-center">
-                        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10 text-2xl">
-                            🔐
-                        </div>
-                        <h3 className="mt-4 font-semibold">Authentication</h3>
-                        <p className="mt-2 text-sm text-foreground/60">
-                            Login, signup, and session management with Supabase Auth. Role-based access built in.
-                        </p>
-                    </div>
-                    <div className="text-center">
-                        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/10 text-2xl">
-                            🗄️
-                        </div>
-                        <h3 className="mt-4 font-semibold">Database</h3>
-                        <p className="mt-2 text-sm text-foreground/60">
-                            Postgres database with Row Level Security. Profiles table ready to extend.
-                        </p>
-                    </div>
-                    <div className="text-center">
-                        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-green-500/10 text-2xl">
-                            ⚡
-                        </div>
-                        <h3 className="mt-4 font-semibold">Fast Setup</h3>
-                        <p className="mt-2 text-sm text-foreground/60">
-                            Next.js App Router, Tailwind CSS, TypeScript. Deploy-ready in minutes.
-                        </p>
-                    </div>
-                </div>
-            </section>
+        <section className="glass rounded-3xl p-8">
+          <h2 className="text-xl font-semibold">Stack Decisions</h2>
+          <ul className="mt-4 space-y-3 text-sm text-foreground/80">
+            <li className="rounded-xl border border-white/10 bg-white/5 p-3">
+              <strong className="text-white">Design System:</strong> Tailwind + shadcn-style primitives and spacing rhythm.
+            </li>
+            <li className="rounded-xl border border-white/10 bg-white/5 p-3">
+              <strong className="text-white">Routing:</strong> Next.js route-grouped experiences for public/user/admin.
+            </li>
+            <li className="rounded-xl border border-white/10 bg-white/5 p-3">
+              <strong className="text-white">Deployment:</strong> Docker Compose plus Windows quick deployment scripts.
+            </li>
+          </ul>
+        </section>
+      </main>
 
-            {/* Footer */}
-            <footer className="border-t border-foreground/10 px-6 py-6 text-center text-sm text-foreground/40">
-                Built for hackathons with ❤️
-            </footer>
-        </div>
-    );
+      <section className="mx-auto mt-8 grid max-w-6xl gap-4 sm:grid-cols-3">
+        {highlights.map((item) => (
+          <article key={item.title} className="glass rounded-2xl p-5">
+            <div className="text-2xl">{item.emoji}</div>
+            <h3 className="mt-3 font-semibold">{item.title}</h3>
+            <p className="mt-2 text-sm leading-6 text-foreground/70">{item.desc}</p>
+          </article>
+        ))}
+      </section>
+    </div>
+  );
 }

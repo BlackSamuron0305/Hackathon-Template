@@ -1,35 +1,35 @@
+const metrics = [
+  { label: "Weekly sessions", value: "128", note: "+14%" },
+  { label: "Tasks shipped", value: "42", note: "+8" },
+  { label: "Feedback score", value: "4.8", note: "Stable" },
+];
+
 export default function DashboardPage() {
-    return (
-        <div className="px-8 py-10">
-            <div className="mb-8">
-                <h1 className="text-2xl font-bold">Dashboard</h1>
-                <p className="mt-1 text-foreground/60">
-                    Here&apos;s what&apos;s happening with your account.
-                </p>
-            </div>
+  return (
+    <div className="space-y-6">
+      <section className="glass rounded-3xl p-8">
+        <h1 className="text-3xl font-semibold">User Dashboard</h1>
+        <p className="mt-2 text-foreground/75">Track momentum, product quality, and next actions in one place.</p>
+      </section>
 
-            {/* Stats grid */}
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                <div className="rounded-xl border border-foreground/10 p-6">
-                    <h3 className="text-sm font-medium text-foreground/60">Card 1</h3>
-                    <p className="mt-2 text-3xl font-bold">--</p>
-                </div>
-                <div className="rounded-xl border border-foreground/10 p-6">
-                    <h3 className="text-sm font-medium text-foreground/60">Card 2</h3>
-                    <p className="mt-2 text-3xl font-bold">--</p>
-                </div>
-                <div className="rounded-xl border border-foreground/10 p-6">
-                    <h3 className="text-sm font-medium text-foreground/60">Card 3</h3>
-                    <p className="mt-2 text-3xl font-bold">--</p>
-                </div>
-            </div>
+      <section className="grid gap-4 md:grid-cols-3">
+        {metrics.map((metric) => (
+          <article key={metric.label} className="glass rounded-2xl p-5">
+            <p className="text-sm text-foreground/70">{metric.label}</p>
+            <p className="mt-2 text-3xl font-semibold">{metric.value}</p>
+            <p className="mt-2 text-xs text-cyan-200">{metric.note}</p>
+          </article>
+        ))}
+      </section>
 
-            {/* Content area */}
-            <div className="mt-10 rounded-xl border border-dashed border-foreground/20 p-12 text-center">
-                <p className="text-foreground/40">
-                    Your dashboard content goes here. Start building!
-                </p>
-            </div>
-        </div>
-    );
+      <section className="glass rounded-2xl p-6">
+        <h2 className="text-lg font-semibold">Roadmap Focus</h2>
+        <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-foreground/80">
+          <li>Connect these cards to real Supabase analytics.</li>
+          <li>Add project-specific team widgets and goals.</li>
+          <li>Ship role-aware notifications for admins and users.</li>
+        </ul>
+      </section>
+    </div>
+  );
 }

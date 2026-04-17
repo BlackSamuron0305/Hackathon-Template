@@ -1,34 +1,24 @@
 export default function AdminSettingsPage() {
-    return (
-        <div className="px-8 py-10">
-            <div className="mb-8">
-                <h1 className="text-2xl font-bold">Admin Settings</h1>
-                <p className="mt-1 text-foreground/60">
-                    Configure application-wide settings.
-                </p>
-            </div>
+  return (
+    <div className="space-y-6">
+      <section className="glass rounded-3xl p-8">
+        <h1 className="text-3xl font-semibold">Admin Settings</h1>
+        <p className="mt-2 text-foreground/75">Global policy controls, release safety toggles, and system governance.</p>
+      </section>
 
-            <div className="max-w-lg space-y-6">
-                <div className="rounded-xl border border-foreground/10 p-6">
-                    <h3 className="font-medium">General</h3>
-                    <p className="mt-1 text-sm text-foreground/60">
-                        App name, description, and other general settings.
-                    </p>
-                    <div className="mt-4 rounded-lg border border-dashed border-foreground/20 p-4 text-center text-sm text-foreground/40">
-                        General settings placeholder
-                    </div>
-                </div>
+      <section className="grid gap-4 lg:grid-cols-2">
+        <article className="glass rounded-2xl p-6">
+          <h2 className="font-semibold">Platform policies</h2>
+          <p className="mt-2 text-sm text-foreground/75">Control feature flags and cross-environment rollout strategy.</p>
+          <div className="mt-4 rounded-xl border border-dashed border-white/20 p-4 text-sm text-foreground/60">Connect to policy storage.</div>
+        </article>
 
-                <div className="rounded-xl border border-foreground/10 p-6">
-                    <h3 className="font-medium">Security</h3>
-                    <p className="mt-1 text-sm text-foreground/60">
-                        Authentication and access control settings.
-                    </p>
-                    <div className="mt-4 rounded-lg border border-dashed border-foreground/20 p-4 text-center text-sm text-foreground/40">
-                        Security settings placeholder
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+        <article className="glass rounded-2xl p-6">
+          <h2 className="font-semibold">Security posture</h2>
+          <p className="mt-2 text-sm text-foreground/75">Set stricter auth, rotation, and alerting defaults.</p>
+          <div className="mt-4 rounded-xl border border-dashed border-white/20 p-4 text-sm text-foreground/60">Connect to security config.</div>
+        </article>
+      </section>
+    </div>
+  );
 }
