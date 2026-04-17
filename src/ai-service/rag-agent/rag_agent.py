@@ -19,7 +19,7 @@ class RAGConfig:
     ollama_base_url: str = "http://localhost:11434"
     llm_model: str = "deepseek-r1:8b"
     embedding_model: str = "nomic-embed-text"
-    persist_directory: str = "data/chromadb"
+    persist_directory: str = str(Path(__file__).resolve().parent / "data" / "chromadb")
     collection_name: str = "rag-documents"
     chunk_size: int = 900
     chunk_overlap: int = 120

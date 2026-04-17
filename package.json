@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --test tests/unit/*.test.mjs",
+    "test": "node --test $(find tests/unit -type f -name '*.test.mjs' | sort)",
     "test:only": "npm test",
     "test:ci": "npm run lint && npm run build && npm test"
   },

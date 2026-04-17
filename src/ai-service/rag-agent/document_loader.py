@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 from typing import Iterable
 from zipfile import BadZipFile
@@ -17,6 +18,7 @@ from rapidocr_onnxruntime import RapidOCR
 
 
 SUPPORTED_EXTENSIONS = {".csv", ".pdf", ".doc", ".docx"}
+LOGGER = logging.getLogger(__name__)
 
 
 def _ocr_pdf(path: Path) -> list[Document]:
@@ -70,6 +72,10 @@ def load_documents(paths: Iterable[str], enable_ocr: bool = True) -> list[Docume
             try:
                 documents.extend(Docx2txtLoader(path.as_posix()).load())
             except (BadZipFile, ValueError, RuntimeError):
+                LOGGER.warning(
+                    "Docx2txtLoader failed for %s, falling back to UnstructuredWordDocumentLoader.",
+                    path,
+                )
                 documents.extend(UnstructuredWordDocumentLoader(path.as_posix()).load())
             continue
 
