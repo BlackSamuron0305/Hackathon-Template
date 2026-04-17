@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -19,7 +20,10 @@ class RAGConfig:
     ollama_base_url: str = "http://localhost:11434"
     llm_model: str = "deepseek-r1:8b"
     embedding_model: str = "nomic-embed-text"
-    persist_directory: str = str(Path(__file__).resolve().parent / "data" / "chromadb")
+    persist_directory: str = os.getenv(
+        "RAG_PERSIST_DIRECTORY",
+        str((Path.cwd() / "data" / "chromadb").resolve()),
+    )
     collection_name: str = "rag-documents"
     chunk_size: int = 900
     chunk_overlap: int = 120
