@@ -117,10 +117,9 @@ UPDATE profiles SET role = 'admin' WHERE email = 'your@email.com';
 ## Testing
 
 ```bash
-npm test                  # Run all tests
-npm run test:integration  # Integration tests only
-npm run test:e2e          # E2E tests only
-npm run test:coverage     # With coverage
+npm test          # Run all tests
+npm run test:only # Alias for tests only
+npm run test:ci   # Lint + build + tests
 ```
 
 - **Unit tests** → `tests/unit/`
@@ -156,3 +155,19 @@ npx vercel
 # Or build and run
 npm run build && npm start
 ```
+
+
+## Docker Deployment
+
+A full deployment setup is included in `deployment/` with Docker Compose and Windows scripts.
+
+```bash
+cd deployment
+docker compose up -d --build
+```
+
+Windows scripts are available in `deployment/windows/` for:
+- tests only
+- tests + image builds
+- quick deploy per service (frontend, backend, ai-service)
+- all-in-one compose deploy

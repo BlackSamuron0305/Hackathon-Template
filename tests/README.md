@@ -7,11 +7,11 @@ This directory contains all tests for the Hackathon Template project.
 ```
 tests/
 ├── integration/        # Integration tests (API routes, DB, auth flows)
-│   ├── auth/           # Authentication flow tests
-│   ├── api/            # API endpoint tests
-│   └── database/       # Database query & RLS tests
-├── e2e/                # End-to-end tests (full user journeys)
-├── unit/               # Unit tests (pure functions, helpers)
+│   ├── auth/
+│   ├── api/
+│   └── database/
+├── e2e/                # End-to-end tests
+├── unit/               # Unit tests
 └── setup.ts            # Shared test setup & utilities
 ```
 
@@ -21,20 +21,17 @@ tests/
 # Run all tests
 npm test
 
-# Run integration tests only
-npm run test:integration
+# Alias: run tests only
+npm run test:only
 
-# Run e2e tests only
-npm run test:e2e
-
-# Run with coverage
-npm run test:coverage
+# CI style validation
+npm run test:ci
 ```
 
 ## Writing Tests
 
-- **Unit tests** go in `tests/unit/` — test pure functions and utilities
-- **Integration tests** go in `tests/integration/` — test API routes, database queries, auth flows
-- **E2E tests** go in `tests/e2e/` — test full user journeys through the app
+- **Unit tests** go in `tests/unit/`.
+- **Integration tests** go in `tests/integration/`.
+- **E2E tests** go in `tests/e2e/`.
 
-Name test files with the `.test.ts` or `.test.tsx` suffix.
+Name test files with the `.test.mjs`, `.test.ts`, or `.test.tsx` suffix.
