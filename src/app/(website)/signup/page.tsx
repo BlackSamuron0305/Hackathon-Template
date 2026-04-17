@@ -18,13 +18,13 @@ export default async function SignupPage({
         {params.message && <p className="mt-4 rounded-xl border border-green-400/30 bg-green-400/10 px-3 py-2 text-sm text-green-200">{params.message}</p>}
 
         <form className="mt-6 grid gap-4">
-          <label className="grid gap-2 text-sm">
+          <label htmlFor="email" className="grid gap-2 text-sm">
             Email
-            <input id="email" name="email" type="email" className="rounded-xl border bg-transparent px-4 py-3 outline-none ring-violet-400/0 transition focus:ring-2" required placeholder="you@example.com" />
+            <input id="email" name="email" type="email" className="rounded-xl border bg-transparent px-4 py-3 outline-none ring-violet-400/0 transition focus:ring-2 focus:ring-violet-400" required placeholder="you@example.com" />
           </label>
-          <label className="grid gap-2 text-sm">
+          <label htmlFor="password" className="grid gap-2 text-sm">
             Password
-            <input id="password" name="password" type="password" minLength={6} className="rounded-xl border bg-transparent px-4 py-3 outline-none ring-violet-400/0 transition focus:ring-2" required placeholder="At least 6 characters" />
+            <input id="password" name="password" type="password" minLength={6} className="rounded-xl border bg-transparent px-4 py-3 outline-none ring-violet-400/0 transition focus:ring-2 focus:ring-violet-400" required placeholder="At least 6 characters" />
           </label>
           <button formAction={signup} className="mt-2 rounded-xl bg-cyan-500 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-cyan-400">
             Sign up

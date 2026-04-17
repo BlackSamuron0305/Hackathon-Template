@@ -29,7 +29,7 @@ export default function AdminUsersPage() {
                 <td className="px-5 py-3 text-foreground/80">{user.role}</td>
                 <td className="px-5 py-3 text-foreground/70">{user.created}</td>
                 <td className="px-5 py-3">
-                  <button className="rounded-lg border border-white/20 px-3 py-1.5 text-xs hover:bg-white/5">Inspect</button>
+                  <button aria-label={`Inspect user ${user.email}`} className="rounded-lg border border-white/20 px-3 py-1.5 text-xs hover:bg-white/5">Inspect</button>
                 </td>
               </tr>
             ))}
