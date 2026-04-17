@@ -71,12 +71,15 @@ def load_documents(paths: Iterable[str], enable_ocr: bool = True) -> list[Docume
         if suffix == ".docx":
             try:
                 documents.extend(Docx2txtLoader(path.as_posix()).load())
-            except (BadZipFile, ValueError, RuntimeError):
+            except (BadZipFile, ValueError):
                 LOGGER.warning(
                     "Docx2txtLoader failed for %s, falling back to UnstructuredWordDocumentLoader.",
                     path,
                 )
                 documents.extend(UnstructuredWordDocumentLoader(path.as_posix()).load())
+            except RuntimeError:
+                LOGGER.exception("Unexpected runtime error while loading DOCX: %s", path)
+                raise
             continue
 
     return documents
